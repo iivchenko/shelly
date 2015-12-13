@@ -23,6 +23,7 @@ namespace Shelly.WPF.GUI
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }

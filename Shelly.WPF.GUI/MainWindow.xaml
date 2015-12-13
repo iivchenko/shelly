@@ -14,7 +14,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <RichTextBox Grid.Row="0" IsReadOnly="True"/>
+        <TextBlock Grid.Row="0" Text="{Binding Output}"/>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -22,8 +22,8 @@
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
             
-            <TextBox Grid.Column="0" HorizontalAlignment="Stretch"/>
-            <Button Grid.Column ="1" Content ="Run"/>
+            <TextBox Grid.Column="0" HorizontalAlignment="Stretch" Text ="{Binding Script}"/>
+            <Button Grid.Column ="1" Content ="Run" Command="{Binding Run}"/>
 
         </Grid>      
 
