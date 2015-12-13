@@ -25,5 +25,13 @@ namespace Shelly.WPF.GUI
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ((MainViewModel)DataContext).Run.Execute(null);
+            }
+        }
     }
 }

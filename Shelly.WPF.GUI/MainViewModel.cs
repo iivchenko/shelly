@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Management.Automation;
 using System.Windows.Input;
 
@@ -55,9 +57,16 @@ namespace Shelly.WPF.GUI
                 return new LazyCommand(() =>
                 {
                     _shell.AddScript(Script);
+                    _shell.AddCommand("out-string");
 
-                    Output += _shell.Invoke();
+                    Output += Script;                    
 
+                    foreach (var item in _shell.Invoke())
+                    {
+                        Output += item.ToString();
+                    }
+
+                    Script = string.Empty;
                 });
             }
         } 
