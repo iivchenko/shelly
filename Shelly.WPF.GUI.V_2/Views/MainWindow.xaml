@@ -1,0 +1,56 @@
+﻿<Window x:Class="Shelly.WPF.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shelly.WPF.GUI.V_2.ViewModels"
+        mc:Ignorable="d"
+        MinHeight="350" 
+        MinWidth="525"
+        d:DataContext="{d:DesignInstance Type=local:IPowerShellViewModel}"
+        Title="{Binding Title}">
+    
+    <Grid>
+        <Grid.Triggers>
+            <Trigger Property="{Binding CredsRequired}" Value="true">
+                <Trigger.ExitActions>
+                    
+                </Trigger.ExitActions>
+            </Trigger>
+        </Grid.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBox 
+            Name="Out" 
+            Grid.Row="0"
+            TextWrapping="Wrap" 
+            IsReadOnly="True"
+            Text="{Binding Out}" 
+            Background = "#012456"
+            Foreground ="#EEEDF0"
+            FontFamily ="Courier New" 
+            FontSize="18" 
+            ScrollViewer.CanContentScroll="True"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto"
+            PreviewMouseWheel="Out_OnMouseWheel">
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy"/>
+                    <MenuItem Header="Wrap Text" Click="MenuItem_OnClick"/>
+                </ContextMenu>
+            </TextBox.ContextMenu>
+        </TextBox>
+
+        <TextBox 
+            Grid.Row="1"
+            Text ="{Binding Script, UpdateSourceTrigger=PropertyChanged}" KeyDown="TextBox_KeyDown"
+            Background = "#012456"
+            Foreground ="#EEEDF0"
+            HorizontalAlignment="Stretch"/>
+        
+    </Grid>
+</Window>
